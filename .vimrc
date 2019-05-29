@@ -4,9 +4,19 @@ call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'Valloric/YouCompleteMe'
 Plugin 'chrisbra/csv.vim'
+Plugin 'dracula/vim'
+Bundle 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'}
 call vundle#end()
 " filetype off
 filetype plugin indent on
+
+" Theme
+" color dracula
+
+" Powerline
+set laststatus=2
+set t_Co=256
+let g:Powerline_symbols = "fancy"
 
 " Turn syntax highlighting on
 syntax on
