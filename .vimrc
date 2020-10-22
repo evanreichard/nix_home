@@ -1,14 +1,19 @@
 set nocompatible
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
+Plugin 'ctrlp.vim'
+Plugin 'airblade/vim-gitgutter'
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'Valloric/YouCompleteMe'
 Plugin 'chrisbra/csv.vim'
 Plugin 'dracula/vim'
 Bundle 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'}
+Plugin 'psf/black'
 call vundle#end()
-" filetype off
-filetype plugin indent on
+
+" Highlight IP Addresses
+syn match ipaddr /\(\(25\_[0-5]\|2\_[0-4]\_[0-9]\|\_[01]\?\_[0-9]\_[0-9]\?\)\.\)\{3\}\(25\_[0-5]\|2\_[0-4]\_[0-9]\|\_[01]\?\_[0-9]\_[0-9]\?\)/
+hi link ipaddr Identifier
 
 " Theme
 " color dracula
@@ -20,6 +25,8 @@ let g:Powerline_symbols = "fancy"
 
 " Turn syntax highlighting on
 syntax on
+" filetype off
+filetype plugin indent on
 " No line wrapping
 set nowrap
 " Line numbers
@@ -30,8 +37,6 @@ set hlsearch
 set backspace=2
 " Disable swap files (no recovery if you dont save!)
 set noswapfile
-" Set vertical red line at the 80 char column
-set colorcolumn=80
 " Set tab = 4 spaces
 set tabstop=4
 " Addects >> << ++ and automatic indentation
