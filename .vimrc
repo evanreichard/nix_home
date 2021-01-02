@@ -1,4 +1,10 @@
-set nocompatible
+" Python Settings - Needed for Nix Python
+set pythondll=$HOME/.nix-profile/bin/python3
+set pythonhome=$NIX_PYTHONPATH
+set pythonthreedll=$HOME/.nix-profile/bin/python3
+set pythonthreehome=$NIX_PYTHONPATH
+
+" Vundle & Plugins
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 Plugin 'ctrlp.vim'
@@ -7,26 +13,37 @@ Plugin 'VundleVim/Vundle.vim'
 Plugin 'Valloric/YouCompleteMe'
 Plugin 'chrisbra/csv.vim'
 Plugin 'dracula/vim'
-Bundle 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'}
+Bundle 'powerline/powerline', {'rtp': 'powerline/bindings/vim/'}
 Plugin 'psf/black'
 call vundle#end()
+
+" filetype off
+filetype plugin indent on
 
 " Highlight IP Addresses
 syn match ipaddr /\(\(25\_[0-5]\|2\_[0-4]\_[0-9]\|\_[01]\?\_[0-9]\_[0-9]\?\)\.\)\{3\}\(25\_[0-5]\|2\_[0-4]\_[0-9]\|\_[01]\?\_[0-9]\_[0-9]\?\)/
 hi link ipaddr Identifier
-
-" Theme
-" color dracula
 
 " Powerline
 set laststatus=2
 set t_Co=256
 let g:Powerline_symbols = "fancy"
 
+" Disable Modeline
+set modelines=0
+set nomodeline
+
+" Set Mouse Select & Scroll
+set mouse=a
+
+" MiniBufExpl
+let g:miniBufExplMapWindowNavVim = 1
+let g:miniBufExplMapWindowNavArrows = 1
+let g:miniBufExplMapCTabSwitchBufs = 1
+let g:miniBufExplModSelTarget = 1
+
 " Turn syntax highlighting on
 syntax on
-" filetype off
-filetype plugin indent on
 " No line wrapping
 set nowrap
 " Line numbers
@@ -37,6 +54,8 @@ set hlsearch
 set backspace=2
 " Disable swap files (no recovery if you dont save!)
 set noswapfile
+" Set vertical red line at the 80 char column
+" set colorcolumn=80
 " Set tab = 4 spaces
 set tabstop=4
 " Addects >> << ++ and automatic indentation
@@ -62,8 +81,8 @@ let b:csv_arrange_align = 'l*'
 let g:netrw_banner = 0
 let g:netrw_liststyle = 4
 let g:netrw_chgwin = 2
-
 let g:netrw_browse_split = 3
+
 " remap shift-enter to fire up the sidebar
 " the same remap as above - may be necessary in some distros
 nnoremap <silent> <C-M> :leftabove 25vs<CR>:e .<CR>
