@@ -43,7 +43,9 @@ function csv2mdt(){
 # ------------------------------------------------------------------------------
 # ---------------------------------- EXPORTS -----------------------------------
 # ------------------------------------------------------------------------------
-export PATH=$HOME/.local/bin:$PATH
+export PATH=$HOME/.local/bin:$HOME/.yarn/bin:$HOME/Development/Tools/flutter/bin:$PATH
+
+export GOPATH=$HOME/go
 export KUBE_EDITOR="/Applications/MacVim.app/Contents/bin/mvim -v"
 export NIX_PYTHONPATH=$(python3 -c "import sys; print(sys.base_prefix)")
 
@@ -53,7 +55,7 @@ export NIX_PYTHONPATH=$(python3 -c "import sys; print(sys.base_prefix)")
 powerline-daemon -q
 POWERLINE_BASH_CONTINUATION=1
 POWERLINE_BASH_SELECT=1
-. $HOME/.local/lib/python2.7/site-packages/powerline/bindings/bash/powerline.sh
+. $HOME/.local/lib/python3.9/site-packages/powerline/bindings/bash/powerline.sh
 
 # ------------------------------------------------------------------------------
 # ------------------------------ TMUX & NEOFETCH -------------------------------

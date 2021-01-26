@@ -15,7 +15,14 @@ Plugin 'chrisbra/csv.vim'
 Plugin 'dracula/vim'
 Bundle 'powerline/powerline', {'rtp': 'powerline/bindings/vim/'}
 Plugin 'psf/black'
+Plugin 'dart-lang/dart-vim-plugin'
+Plugin 'natebosch/vim-lsc'
+Plugin 'natebosch/vim-lsc-dart'
 call vundle#end()
+
+" Set Dart SDK
+let g:ycm_dart_bin_folder_path = '/Users/evanreichard/Development/Tools/flutter/bin/cache/dart-sdk/bin'
+let g:lsc_auto_map = v:true
 
 " filetype off
 filetype plugin indent on
