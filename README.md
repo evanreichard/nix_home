@@ -1,1 +1,1 @@
-# dotfiles
+# Nix Home Manager Configuration
