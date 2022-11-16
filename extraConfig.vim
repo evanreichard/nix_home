@@ -8,12 +8,12 @@ let g:lightline = {
 set nowrap
 set nu
 set hlsearch
+set shiftwidth=2
 
 " set fold settings
 set foldmethod=indent
 set foldnestmax=10
 set foldlevel=2
-set nofoldenable
 
 " synchronize with system clipboard
 set clipboard=unnamed
