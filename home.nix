@@ -8,6 +8,7 @@ in
   imports = [
     ./bash
     ./git
+    ./htop
     ./iterm2
     ./nvim
     ./powerline
