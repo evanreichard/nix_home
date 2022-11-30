@@ -28,6 +28,7 @@
       aerial-nvim     # Code Outline
       comment-nvim    # Code Comments
       diffview-nvim   # Diff View
+      leap-nvim       # Quick Movement
       numb-nvim       # Peek / Jump to Lines
       nvim-autopairs  # Automatically Close Pairs (),[],{}
       nvim-tree-lua   # File Explorer
@@ -37,8 +38,8 @@
       # ------------------
       # --- Theme / UI ---
       # ------------------
-      embark-vim        # Theme
-      lightline-vim     # Bottom Line
+      lualine-nvim      # Bottom Line
+      material-nvim     # Theme
       noice-nvim        # UI Tweaks
       nvim-web-devicons # Dev Icons
 

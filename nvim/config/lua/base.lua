@@ -1,3 +1,7 @@
+-- Set Leader
+vim.keymap.set("n", "<Space>", "<Nop>", { silent = true })
+vim.g.mapleader = " "
+
 -- Disable NetRW
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
@@ -22,24 +26,11 @@ vim.opt.foldmethod = "indent"
 vim.opt.foldnestmax = 10
 vim.opt.foldlevel = 2
 
--- Lightline config
-vim.g['lightline'] = {
-  colorscheme = 'embark',
-  separator = {
-    left = "\u{e0b0}",
-    right = "\u{e0b2}"
-  },
-  subseparator = {
-    left = "\u{e0b1}",
-    right = "\u{e0b3}"
-  }
-}
-
 -- Set Color Scheme
-vim.cmd('colorscheme embark')
-vim.diagnostic.config({
-  virtual_text = false,
-})
+-- vim.cmd('colorscheme embark')
+-- vim.cmd('colorscheme OceanicNext')
+-- vim.cmd('colorscheme material')
+-- vim.g.material_style = "oceanic"
 
 -- Mappings.
 -- See `:help vim.diagnostic.*` for documentation on any of the below functions

@@ -36,6 +36,7 @@
       # Set Colors
       # set -g default-terminal "screen-256color"
       # set-option -ga terminal-overrides ",xterm-256color:Tc"
+      # set -g status-style bg='#395A65',fg='#B0BEC5'
     '';
   };
 }
