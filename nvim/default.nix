@@ -1,5 +1,7 @@
 { config, pkgs, ... }:
-
+let
+  inherit (pkgs.lib.lists) subtractLists;
+in
 {
   programs.neovim = {
     enable = true;
@@ -38,8 +40,8 @@
       # ------------------
       # --- Theme / UI ---
       # ------------------
+      embark-vim        # Theme
       lualine-nvim      # Bottom Line
-      material-nvim     # Theme
       noice-nvim        # UI Tweaks
       nvim-web-devicons # Dev Icons
 
@@ -48,14 +50,11 @@
       # ------------------
       (
         nvim-treesitter.withPlugins (
-          plugins: with pkgs.tree-sitter-grammars; [
-            # tree-sitter-bash            # Incompatibility (Prevents Noice Highlighting)
-            tree-sitter-lua
-            tree-sitter-markdown
-            tree-sitter-markdown-inline
-            tree-sitter-regex
-            tree-sitter-vim
-          ]
+          # Exclude Outdated Packages (Causes Issues)
+          plugins: with pkgs; subtractLists [
+            tree-sitter-grammars.tree-sitter-bash
+            tree-sitter-grammars.tree-sitter-kotlin
+          ] tree-sitter.allGrammars
         )
       )
 

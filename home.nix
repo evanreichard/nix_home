@@ -24,13 +24,13 @@ in
 
   # Global Packages
   home.packages = with pkgs; [
+    (nerdfonts.override { fonts = [ "Meslo" ]; })
     bashInteractive
     htop
     k9s
     kubectl
     mosh
     neofetch
-    nerdfonts
     python311
     tldr
   ] ++ optionals isDarwin [

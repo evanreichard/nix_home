@@ -1,3 +1,7 @@
+-- Set Theme
+vim.cmd('colorscheme embark')
+--vim.cmd('colorscheme gruvbox-material')
+
 -- Set Leader
 vim.keymap.set("n", "<Space>", "<Nop>", { silent = true })
 vim.g.mapleader = " "
