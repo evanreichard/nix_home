@@ -1,5 +1,8 @@
 -- Set Theme
-vim.cmd('colorscheme embark')
+vim.g.nord_borders = true
+vim.g.nord_contrast = true
+vim.cmd('colorscheme nord')
+--vim.cmd('colorscheme embark')
 --vim.cmd('colorscheme gruvbox-material')
 
 -- Set Leader

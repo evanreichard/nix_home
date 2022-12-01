@@ -1,5 +1,6 @@
 require('lualine').setup({
   options = {
-    theme = "OceanicNext",
+    theme = "nord",
+    -- theme = "OceanicNext",
   }
 })

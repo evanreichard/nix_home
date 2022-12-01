@@ -15,32 +15,35 @@ in
       # ------------------
       # --- Completion ---
       # ------------------
-      cmp-buffer      # Buffer Word Completion
-      cmp-cmdline     # Command Line Completion
-      cmp-nvim-lsp    # Main LSP
-      cmp-path        # Path Completion
-      cmp-vsnip       # Snippets
-      lsp_lines-nvim  # Inline Diagnostics
-      nvim-cmp        # Completions
-      nvim-lspconfig  # LSP Config
+      cmp-buffer        # Buffer Word Completion
+      cmp-cmdline       # Command Line Completion
+      cmp-nvim-lsp      # Main LSP
+      cmp-path          # Path Completion
+      cmp_luasnip       # Snippets Completion
+      friendly-snippets # Snippets
+      lsp_lines-nvim    # Inline Diagnostics
+      luasnip           # Snippets
+      nvim-cmp          # Completions
+      nvim-lspconfig    # LSP Config
 
       # ------------------
       # ----- Helpers ----
       # ------------------
-      aerial-nvim     # Code Outline
-      comment-nvim    # Code Comments
-      diffview-nvim   # Diff View
-      leap-nvim       # Quick Movement
-      numb-nvim       # Peek / Jump to Lines
-      nvim-autopairs  # Automatically Close Pairs (),[],{}
-      nvim-tree-lua   # File Explorer
-      telescope-nvim  # Fuzzy Finder
-      vim-nix         # Nix Helpers
+      aerial-nvim               # Code Outline
+      comment-nvim              # Code Comments
+      diffview-nvim             # Diff View
+      leap-nvim                 # Quick Movement
+      numb-nvim                 # Peek / Jump to Lines
+      nvim-autopairs            # Automatically Close Pairs (),[],{}
+      neo-tree-nvim             # File Explorer
+      telescope-fzf-native-nvim # Faster Telescope
+      telescope-nvim            # Fuzzy Finder
+      vim-nix                   # Nix Helpers
 
       # ------------------
       # --- Theme / UI ---
       # ------------------
-      embark-vim        # Theme
+      nord-nvim         # Theme
       lualine-nvim      # Bottom Line
       noice-nvim        # UI Tweaks
       nvim-web-devicons # Dev Icons
