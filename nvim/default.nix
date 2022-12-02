@@ -33,9 +33,10 @@ in
       comment-nvim              # Code Comments
       diffview-nvim             # Diff View
       leap-nvim                 # Quick Movement
+      neo-tree-nvim             # File Explorer
+      neoformat                 # Format
       numb-nvim                 # Peek / Jump to Lines
       nvim-autopairs            # Automatically Close Pairs (),[],{}
-      neo-tree-nvim             # File Explorer
       telescope-fzf-native-nvim # Faster Telescope
       telescope-nvim            # Fuzzy Finder
       vim-nix                   # Nix Helpers
@@ -74,6 +75,9 @@ in
       nodePackages.typescript
       nodePackages.typescript-language-server
       nodePackages.vscode-html-languageserver-bin
+
+      # Parser
+      python310Packages.sqlparse
 
     ];
 
