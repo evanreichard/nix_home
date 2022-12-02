@@ -7,6 +7,7 @@ in
 
   imports = [
     ./bash
+    ./direnv
     ./git
     ./htop
     ./iterm2
