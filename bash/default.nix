@@ -6,7 +6,7 @@
     shellAliases = {
       grep = "grep --color";
     };
-    profileExtra =''
+    profileExtra = ''
       set -o vi
       [ ! -z $TMUX ] || tmux a || tmux
       neofetch

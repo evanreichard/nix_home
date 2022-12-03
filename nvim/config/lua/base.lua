@@ -2,11 +2,11 @@
 vim.g.nord_borders = true
 vim.g.nord_contrast = true
 vim.cmd('colorscheme nord')
---vim.cmd('colorscheme embark')
---vim.cmd('colorscheme gruvbox-material')
+-- vim.cmd('colorscheme embark')
+-- vim.cmd('colorscheme gruvbox-material')
 
 -- Set Leader
-vim.keymap.set("n", "<Space>", "<Nop>", { silent = true })
+vim.keymap.set("n", "<Space>", "<Nop>", {silent = true})
 vim.g.mapleader = " "
 
 -- Disable NetRW
@@ -41,7 +41,7 @@ vim.opt.foldlevel = 2
 
 -- Mappings.
 -- See `:help vim.diagnostic.*` for documentation on any of the below functions
-local opts = { noremap=true, silent=true }
+local opts = {noremap = true, silent = true}
 vim.keymap.set('n', '<space>e', vim.diagnostic.open_float, opts)
 vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, opts)
 vim.keymap.set('n', ']d', vim.diagnostic.goto_next, opts)

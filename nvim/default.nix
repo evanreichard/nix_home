@@ -15,38 +15,38 @@ in
       # ------------------
       # --- Completion ---
       # ------------------
-      cmp-buffer        # Buffer Word Completion
-      cmp-cmdline       # Command Line Completion
-      cmp-nvim-lsp      # Main LSP
-      cmp-path          # Path Completion
-      cmp_luasnip       # Snippets Completion
+      cmp-buffer # Buffer Word Completion
+      cmp-cmdline # Command Line Completion
+      cmp-nvim-lsp # Main LSP
+      cmp-path # Path Completion
+      cmp_luasnip # Snippets Completion
       friendly-snippets # Snippets
-      lsp_lines-nvim    # Inline Diagnostics
-      luasnip           # Snippets
-      nvim-cmp          # Completions
-      nvim-lspconfig    # LSP Config
+      lsp_lines-nvim # Inline Diagnostics
+      luasnip # Snippets
+      nvim-cmp # Completions
+      nvim-lspconfig # LSP Config
 
       # ------------------
       # ----- Helpers ----
       # ------------------
-      aerial-nvim               # Code Outline
-      comment-nvim              # Code Comments
-      diffview-nvim             # Diff View
-      leap-nvim                 # Quick Movement
-      neo-tree-nvim             # File Explorer
-      neoformat                 # Format
-      numb-nvim                 # Peek / Jump to Lines
-      nvim-autopairs            # Automatically Close Pairs (),[],{}
+      aerial-nvim # Code Outline
+      comment-nvim # Code Comments
+      diffview-nvim # Diff View
+      leap-nvim # Quick Movement
+      neo-tree-nvim # File Explorer
+      null-ls-nvim # Formatters
+      numb-nvim # Peek / Jump to Lines
+      nvim-autopairs # Automatically Close Pairs (),[],{}
       telescope-fzf-native-nvim # Faster Telescope
-      telescope-nvim            # Fuzzy Finder
-      vim-nix                   # Nix Helpers
+      telescope-nvim # Fuzzy Finder
+      vim-nix # Nix Helpers
 
       # ------------------
       # --- Theme / UI ---
       # ------------------
-      nord-nvim         # Theme
-      lualine-nvim      # Bottom Line
-      noice-nvim        # UI Tweaks
+      nord-nvim # Theme
+      lualine-nvim # Bottom Line
+      noice-nvim # UI Tweaks
       nvim-web-devicons # Dev Icons
 
       # ------------------
@@ -58,7 +58,8 @@ in
           plugins: with pkgs; subtractLists [
             tree-sitter-grammars.tree-sitter-bash
             tree-sitter-grammars.tree-sitter-kotlin
-          ] tree-sitter.allGrammars
+          ]
+            tree-sitter.allGrammars
         )
       )
 
@@ -76,8 +77,11 @@ in
       nodePackages.typescript-language-server
       nodePackages.vscode-html-languageserver-bin
 
-      # Parser
-      python310Packages.sqlparse
+      # Formatters
+      luaformatter
+      nixpkgs-fmt
+      nodePackages.prettier
+      sqlfluff
 
     ];
 
