@@ -1392,7 +1392,7 @@
 			<key>Minimum Contrast</key>
 			<real>0.4030938720703125</real>
 			<key>Mouse Reporting</key>
-			<false/>
+			<true/>
 			<key>Name</key>
 			<string>Default</string>
 			<key>Non Ascii Font</key>

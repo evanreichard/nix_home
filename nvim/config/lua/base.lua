@@ -9,6 +9,9 @@ vim.cmd('colorscheme nord')
 vim.keymap.set("n", "<Space>", "<Nop>", {silent = true})
 vim.g.mapleader = " "
 
+-- Set Timeout
+vim.opt.timeoutlen = 250
+
 -- Disable NetRW
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1

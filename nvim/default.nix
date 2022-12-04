@@ -39,14 +39,16 @@ in
       nvim-autopairs # Automatically Close Pairs (),[],{}
       telescope-fzf-native-nvim # Faster Telescope
       telescope-nvim # Fuzzy Finder
+      toggleterm-nvim # Terminal Helper
       vim-nix # Nix Helpers
+      which-key-nvim # Shortcut Helper
 
       # ------------------
       # --- Theme / UI ---
       # ------------------
-      nord-nvim # Theme
       lualine-nvim # Bottom Line
       noice-nvim # UI Tweaks
+      nord-nvim # Theme
       nvim-web-devicons # Dev Icons
 
       # ------------------
@@ -61,6 +63,23 @@ in
           ]
             tree-sitter.allGrammars
         )
+      )
+
+      # ------------------
+      # ----- Silicon ----
+      # ------------------
+      (
+        pkgs.vimUtils.buildVimPluginFrom2Nix {
+          pname = "silicon.lua";
+          version = "2022-12-03";
+          src = pkgs.fetchFromGitHub {
+            owner = "0oAstro";
+            repo = "silicon.lua";
+            rev = "8db5682c9c13d6de584551c4b2b9982709f05610";
+            sha256 = "0148l59wrffmfw4xya0l1ys277hgrm41wspgp0ns2dddsr11mwav";
+          };
+          meta.homepage = "https://github.com/0oAstro/silicon.lua/";
+        }
       )
 
     ];
@@ -82,6 +101,9 @@ in
       nixpkgs-fmt
       nodePackages.prettier
       sqlfluff
+
+      # Silicon
+      silicon
 
     ];
 
