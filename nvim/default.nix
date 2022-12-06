@@ -82,6 +82,23 @@ in
         }
       )
 
+      # ------------------
+      # ------ Duck ------
+      # ------------------
+      # (
+      #   pkgs.vimUtils.buildVimPluginFrom2Nix {
+      #     pname = "duck.nvim";
+      #     version = "2022-12-06";
+      #     src = pkgs.fetchFromGitHub {
+      #       owner = "tamton-aquib";
+      #       repo = "duck.nvim";
+      #       rev = "b1a3b4e52eec886bf4ce5ed692a2162d504d9632";
+      #       sha256 = "0clc9s175mjzrkcjmwhl60fycdxgn24wkhcggaw1gsfspnlizr8z";
+      #     };
+      #     meta.homepage = "https://github.com/tamton-aquib/duck.nvim/";
+      #   }
+      # )
+
     ];
 
     extraPackages = with pkgs; [

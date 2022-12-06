@@ -10,11 +10,11 @@ in
     ./direnv
     ./git
     ./htop
-    ./iterm2
+    ./kitty
+    ./neofetch
     ./nvim
     ./powerline
     ./readline
-    ./tmux
   ];
 
   # Home Manager Config
@@ -27,6 +27,8 @@ in
   home.packages = with pkgs; [
     (nerdfonts.override { fonts = [ "Meslo" ]; })
     bashInteractive
+    google-cloud-sdk
+    imagemagick
     htop
     k9s
     kubectl
@@ -35,7 +37,7 @@ in
     python311
     tldr
   ] ++ optionals isDarwin [
-    iterm2
+    kitty
   ] ++ optionals isLinux [ ];
 
   # Misc Programs

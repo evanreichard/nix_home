@@ -7,9 +7,9 @@
       grep = "grep --color";
     };
     profileExtra = ''
+      SHELL="$BASH"
       set -o vi
       bind "set show-mode-in-prompt on"
-      [ ! -z $TMUX ] || tmux a || tmux
       neofetch
     '';
   };

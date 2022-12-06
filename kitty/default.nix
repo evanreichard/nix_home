@@ -5,8 +5,8 @@ let
 in
 {
   xdg.configFile = mkIf isDarwin {
-    "iterm2/com.googlecode.iterm2.plist" = {
-      source = ./config/com.googlecode.iterm2.plist;
+    "kitty/kitty.conf" = {
+      source = ./config/kitty.conf;
     };
   };
 }
