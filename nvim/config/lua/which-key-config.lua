@@ -8,6 +8,12 @@ wk.register({
     ["<leader>"] = {
         q = {"Show Diagnostics"},
         e = {"Show Line Diagnostics"},
+        d = {
+            name = "DiffView",
+            o = {"<cmd>DiffviewOpen<cr>", "Open Diff"},
+            c = {"<cmd>DiffviewClose<cr>", "Close Diff"},
+            h = {"<cmd>DiffviewFileHistory<cr>", "Diff History"}
+        },
         f = {
             name = "Find - Telescope",
             f = {"<cmd>Telescope find_files<cr>", "Find File"},
