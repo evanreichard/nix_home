@@ -1,3 +1,6 @@
+------------------------------------------------------
+-------------------- Built-in LSP --------------------
+------------------------------------------------------
 local nix_vars = require("nix-vars")
 local nvim_lsp = require('lspconfig')
 
@@ -15,6 +18,13 @@ local on_attach = function(client, bufnr)
                    function() vim.lsp.buf.format {async = true} end, bufopts)
 end
 
+local on_attach_no_formatting = function(client, bufnr)
+    -- Disable Formatting (Prettiers Job - null-ls)
+    client.server_capabilities.documentFormattingProvider = false
+    client.server_capabilities.documentRangeFormattingProvider = false
+    on_attach(client, bufnr)
+end
+
 -- Define LSP Flags & Capabilities
 local lsp_flags = {debounce_text_changes = 150}
 local capabilities = require('cmp_nvim_lsp').default_capabilities()
@@ -28,16 +38,74 @@ nvim_lsp.pyright.setup {
 
 -- HTML LSP Configuration
 nvim_lsp.html.setup {
-    on_attach = on_attach,
+    on_attach = on_attach_no_formatting,
     flags = lsp_flags,
     capabilities = capabilities,
-    cmd = {nix_vars.htmlserver, "--stdio"}
+    cmd = {nix_vars.vscodels .. "/bin/vscode-html-language-server", "--stdio"}
+}
+
+-- JSON LSP Configuration
+nvim_lsp.jsonls.setup {
+    on_attach = on_attach_no_formatting,
+    flags = lsp_flags,
+    capabilities = capabilities,
+    cmd = {nix_vars.vscodels .. "/bin/vscode-json-language-server", "--stdio"}
+}
+
+-- CSS LSP Configuration
+nvim_lsp.cssls.setup {
+    on_attach = on_attach_no_formatting,
+    flags = lsp_flags,
+    capabilities = capabilities,
+    cmd = {nix_vars.vscodels .. "/bin/vscode-css-language-server", "--stdio"}
 }
 
 -- Typescript / Javascript LSP Configuration
 nvim_lsp.tsserver.setup {
-    on_attach = on_attach,
+    on_attach = on_attach_no_formatting,
     flags = lsp_flags,
+    handlers = {
+        -- Disable Diagnostics (ESLints Job)
+        ["textDocument/publishDiagnostics"] = function() end
+    },
     capabilities = capabilities,
     cmd = {nix_vars.tsserver, "--stdio", "--tsserver-path", nix_vars.tslib}
 }
+
+-- Javascript / Typescript LSP Configuration
+nvim_lsp.eslint.setup {
+    on_attach = on_attach_no_formatting,
+    flags = lsp_flags,
+    capabilities = capabilities,
+    cmd = {nix_vars.vscodels .. "/bin/vscode-eslint-language-server", "--stdio"}
+}
+
+------------------------------------------------------
+--------------------- Null-LS LSP --------------------
+------------------------------------------------------
+local null_ls = require("null-ls")
+
+null_ls.setup({
+    sources = {
+        null_ls.builtins.completion.spell,
+        null_ls.builtins.formatting.nixpkgs_fmt,
+        null_ls.builtins.formatting.lua_format,
+        null_ls.builtins.formatting.prettier,
+        null_ls.builtins.diagnostics.sqlfluff
+            .with({extra_args = {"--dialect", "ansi"}}),
+        null_ls.builtins.formatting.sqlfluff
+            .with({extra_args = {"--dialect", "ansi"}})
+    },
+    on_attach = function(client, bufnr)
+        if client.supports_method("textDocument/formatting") then
+            vim.api.nvim_clear_autocmds({group = augroup, buffer = bufnr})
+            vim.api.nvim_create_autocmd("BufWritePre", {
+                group = augroup,
+                buffer = bufnr,
+                callback = function()
+                    vim.lsp.buf.format({async = true})
+                end
+            })
+        end
+    end
+})

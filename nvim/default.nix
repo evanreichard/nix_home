@@ -111,7 +111,7 @@ in
       nodePackages.pyright
       nodePackages.typescript
       nodePackages.typescript-language-server
-      nodePackages.vscode-html-languageserver-bin
+      nodePackages.vscode-langservers-extracted
 
       # Formatters
       luaformatter
@@ -139,9 +139,9 @@ in
     # Generate Nix Vars
     "nvim/lua/nix-vars.lua".text = ''
       local nix_vars = {
-        htmlserver = "${pkgs.nodePackages.vscode-html-languageserver-bin}/bin/html-languageserver",
         tsserver = "${pkgs.nodePackages.typescript-language-server}/bin/typescript-language-server",
         tslib = "${pkgs.nodePackages.typescript}/lib/node_modules/typescript/lib/",
+        vscodels = "${pkgs.nodePackages.vscode-langservers-extracted}",
       }
       return nix_vars
     '';
