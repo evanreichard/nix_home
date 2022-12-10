@@ -6,8 +6,14 @@ wk.register({
     K = {"Definition Hover"},
     ["<C-k>"] = {"Signature Help"},
     ["<leader>"] = {
-        q = {"Show Diagnostics"},
-        e = {"Show Line Diagnostics"},
+        q = {
+            name = "Diagnostics",
+            q = {"Toggle Diagnostic List"},
+            t = {"Toggle Inline Diagnostics"},
+            n = {"Next Diagnostic"},
+            N = {"Previous Diagnostic"},
+            e = {"Open Diagnostic Float"}
+        },
         d = {
             name = "DiffView",
             o = {"<cmd>DiffviewOpen<cr>", "Open Diff"},

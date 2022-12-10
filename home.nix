@@ -28,12 +28,13 @@ in
     (nerdfonts.override { fonts = [ "Meslo" ]; })
     bashInteractive
     google-cloud-sdk
-    imagemagick
     htop
+    imagemagick
     k9s
     kubectl
     mosh
     neofetch
+    pre-commit
     python311
     tldr
   ] ++ optionals isDarwin [
