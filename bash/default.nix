@@ -5,6 +5,7 @@
     enable = true;
     shellAliases = {
       grep = "grep --color";
+      ssh = "TERM=xterm-256color ssh";
     };
     profileExtra = ''
       SHELL="$BASH"

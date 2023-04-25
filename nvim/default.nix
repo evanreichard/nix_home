@@ -73,12 +73,12 @@ in
           pname = "silicon.lua";
           version = "2022-12-03";
           src = pkgs.fetchFromGitHub {
-            owner = "0oAstro";
+            owner = "mhanberg";
             repo = "silicon.lua";
-            rev = "8db5682c9c13d6de584551c4b2b9982709f05610";
-            sha256 = "0148l59wrffmfw4xya0l1ys277hgrm41wspgp0ns2dddsr11mwav";
+            rev = "5ca462bee0a39b058786bc7fbeb5d16ea49f3a23";
+            sha256 = "0vlp645d5mmii513v72jca931miyrhkvhwb9bfzhix1199zx7vi2";
           };
-          meta.homepage = "https://github.com/0oAstro/silicon.lua/";
+          meta.homepage = "https://github.com/mhanberg/silicon.lua/";
         }
       )
 
