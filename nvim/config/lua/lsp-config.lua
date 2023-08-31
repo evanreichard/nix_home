@@ -80,6 +80,14 @@ nvim_lsp.eslint.setup {
     cmd = {nix_vars.vscodels .. "/bin/vscode-eslint-language-server", "--stdio"}
 }
 
+-- Go LSP Configuration
+nvim_lsp.gopls.setup {
+    on_attach = on_attach_no_formatting,
+    flags = lsp_flags,
+    capabilities = capabilities,
+    cmd = {nix_vars.gopls .. "/bin/gopls"}
+}
+
 ------------------------------------------------------
 --------------------- Null-LS LSP --------------------
 ------------------------------------------------------
@@ -90,7 +98,7 @@ null_ls.setup({
         null_ls.builtins.completion.spell,
         null_ls.builtins.formatting.nixpkgs_fmt,
         null_ls.builtins.formatting.lua_format,
-        null_ls.builtins.formatting.prettier,
+        null_ls.builtins.formatting.prettier, null_ls.builtins.formatting.gofmt,
         null_ls.builtins.diagnostics.sqlfluff
             .with({extra_args = {"--dialect", "ansi"}}),
         null_ls.builtins.formatting.sqlfluff

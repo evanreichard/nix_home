@@ -112,6 +112,7 @@ in
       nodePackages.typescript
       nodePackages.typescript-language-server
       nodePackages.vscode-langservers-extracted
+      gopls
 
       # Formatters
       luaformatter
@@ -142,6 +143,7 @@ in
         tsserver = "${pkgs.nodePackages.typescript-language-server}/bin/typescript-language-server",
         tslib = "${pkgs.nodePackages.typescript}/lib/node_modules/typescript/lib/",
         vscodels = "${pkgs.nodePackages.vscode-langservers-extracted}",
+        gopls = "${pkgs.gopls}",
       }
       return nix_vars
     '';

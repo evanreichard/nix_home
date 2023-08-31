@@ -32,6 +32,7 @@ in
     imagemagick
     k9s
     kubectl
+    android-tools
     mosh
     neofetch
     pre-commit
@@ -45,7 +46,7 @@ in
   programs.jq.enable = true;
   programs.pandoc.enable = true;
 
-  # Misc Configuration
+  # SQLite Configuration
   home.file.".sqliterc".text = ''
     .headers on
     .mode column
