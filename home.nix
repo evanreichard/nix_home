@@ -20,7 +20,7 @@ in
   # Home Manager Config
   home.username = "evanreichard";
   home.homeDirectory = "/Users/evanreichard";
-  home.stateVersion = "22.05";
+  home.stateVersion = "23.05";
   programs.home-manager.enable = true;
 
   # Global Packages

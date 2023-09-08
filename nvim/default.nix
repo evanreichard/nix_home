@@ -48,22 +48,14 @@ in
       # ------------------
       lualine-nvim # Bottom Line
       noice-nvim # UI Tweaks
+      nvim-notify # Noice Dependency
       nord-nvim # Theme
       nvim-web-devicons # Dev Icons
 
       # ------------------
       # --- Treesitter ---
       # ------------------
-      (
-        nvim-treesitter.withPlugins (
-          # Exclude Outdated Packages (Causes Issues)
-          plugins: with pkgs; subtractLists [
-            tree-sitter-grammars.tree-sitter-bash
-            tree-sitter-grammars.tree-sitter-kotlin
-          ]
-            tree-sitter.allGrammars
-        )
-      )
+      nvim-treesitter.withAllGrammars
 
       # ------------------
       # ----- Silicon ----
@@ -106,6 +98,7 @@ in
       # Telescope Dependencies
       ripgrep
       fd
+      tree-sitter
 
       # LSP Dependencies
       nodePackages.pyright
@@ -113,6 +106,7 @@ in
       nodePackages.typescript-language-server
       nodePackages.vscode-langservers-extracted
       gopls
+      go
 
       # Formatters
       luaformatter

@@ -99,10 +99,8 @@ null_ls.setup({
         null_ls.builtins.formatting.nixpkgs_fmt,
         null_ls.builtins.formatting.lua_format,
         null_ls.builtins.formatting.prettier, null_ls.builtins.formatting.gofmt,
-        null_ls.builtins.diagnostics.sqlfluff
-            .with({extra_args = {"--dialect", "ansi"}}),
+        null_ls.builtins.diagnostics.sqlfluff,
         null_ls.builtins.formatting.sqlfluff
-            .with({extra_args = {"--dialect", "ansi"}})
     },
     on_attach = function(client, bufnr)
         if client.supports_method("textDocument/formatting") then
