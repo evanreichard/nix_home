@@ -4,7 +4,26 @@
   programs.git = {
     enable = true;
     userName = "Evan Reichard";
-    userEmail = "evan@reichard.io";
+    includes = [
+      {
+        path = "~/.config/git/work";
+        condition = "gitdir:~/Development/git/work/";
+      }
+      {
+        path = "~/.config/git/personal";
+        condition = "gitdir:~/Development/git/personal/";
+      }
+    ];
+  };
+
+  xdg.configFile = {
+
+    # Copy Configuration
+    git = {
+      source = ./config;
+      recursive = true;
+    };
+
   };
 
 }

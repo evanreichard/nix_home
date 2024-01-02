@@ -98,6 +98,7 @@ null_ls.setup({
         null_ls.builtins.completion.spell,
         null_ls.builtins.formatting.nixpkgs_fmt,
         null_ls.builtins.formatting.lua_format,
+        null_ls.builtins.formatting.prettier.with({filetypes = {"svelte"}}),
         null_ls.builtins.formatting.prettier, null_ls.builtins.formatting.gofmt,
         null_ls.builtins.diagnostics.sqlfluff,
         null_ls.builtins.formatting.sqlfluff

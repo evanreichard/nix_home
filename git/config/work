@@ -1,0 +1,5 @@
+[core]
+    sshCommand = "ssh -i ~/Keys/work"
+
+[user]
+    email = evan@prophet.security
