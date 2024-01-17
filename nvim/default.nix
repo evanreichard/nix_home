@@ -11,7 +11,6 @@ in
     withPython3 = true;
 
     plugins = with pkgs.vimPlugins; [
-
       # ------------------
       # --- Completion ---
       # ------------------
@@ -33,6 +32,7 @@ in
       comment-nvim # Code Comments
       diffview-nvim # Diff View
       leap-nvim # Quick Movement
+      markdown-preview-nvim # Markdown Preview
       neo-tree-nvim # File Explorer
       null-ls-nvim # Formatters
       numb-nvim # Peek / Jump to Lines
@@ -61,7 +61,7 @@ in
       # ----- Silicon ----
       # ------------------
       (
-        pkgs.vimUtils.buildVimPluginFrom2Nix {
+        pkgs.vimUtils.buildVimPlugin {
           pname = "silicon.lua";
           version = "2022-12-03";
           src = pkgs.fetchFromGitHub {
@@ -73,28 +73,9 @@ in
           meta.homepage = "https://github.com/mhanberg/silicon.lua/";
         }
       )
-
-      # ------------------
-      # ------ Duck ------
-      # ------------------
-      # (
-      #   pkgs.vimUtils.buildVimPluginFrom2Nix {
-      #     pname = "duck.nvim";
-      #     version = "2022-12-06";
-      #     src = pkgs.fetchFromGitHub {
-      #       owner = "tamton-aquib";
-      #       repo = "duck.nvim";
-      #       rev = "b1a3b4e52eec886bf4ce5ed692a2162d504d9632";
-      #       sha256 = "0clc9s175mjzrkcjmwhl60fycdxgn24wkhcggaw1gsfspnlizr8z";
-      #     };
-      #     meta.homepage = "https://github.com/tamton-aquib/duck.nvim/";
-      #   }
-      # )
-
     ];
 
     extraPackages = with pkgs; [
-
       # Telescope Dependencies
       ripgrep
       fd
@@ -116,7 +97,6 @@ in
 
       # Silicon
       silicon
-
     ];
 
     extraConfig = ":luafile ~/.config/nvim/lua/init.lua";
@@ -124,7 +104,6 @@ in
 
 
   xdg.configFile = {
-
     # Copy Configuration
     nvim = {
       source = ./config;
@@ -141,6 +120,5 @@ in
       }
       return nix_vars
     '';
-
   };
 }
