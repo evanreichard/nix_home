@@ -26,13 +26,14 @@ in
   # Global Packages
   home.packages = with pkgs; [
     (nerdfonts.override { fonts = [ "Meslo" ]; })
+    android-tools
+    awscli2
     bashInteractive
     google-cloud-sdk
     htop
     imagemagick
     k9s
     kubectl
-    android-tools
     mosh
     neofetch
     pre-commit

@@ -34,7 +34,7 @@ in
       leap-nvim # Quick Movement
       markdown-preview-nvim # Markdown Preview
       neo-tree-nvim # File Explorer
-      null-ls-nvim # Formatters
+      none-ls-nvim # Formatters
       numb-nvim # Peek / Jump to Lines
       nvim-autopairs # Automatically Close Pairs (),[],{}
       telescope-fzf-native-nvim # Faster Telescope
