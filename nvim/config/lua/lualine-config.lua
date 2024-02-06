@@ -1,6 +1,7 @@
 require('lualine').setup({
     options = {
-        theme = "nord"
+        theme = "gruvbox_dark"
+        -- theme = "nord"
         -- theme = "OceanicNext",
     }
 })

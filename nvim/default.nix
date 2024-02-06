@@ -48,14 +48,23 @@ in
       # ------------------
       lualine-nvim # Bottom Line
       noice-nvim # UI Tweaks
+      # nord-nvim # Theme
+      melange-nvim # Theme
       nvim-notify # Noice Dependency
-      nord-nvim # Theme
       nvim-web-devicons # Dev Icons
 
       # ------------------
       # --- Treesitter ---
       # ------------------
+      nvim-treesitter-context
       nvim-treesitter.withAllGrammars
+
+      # ------------------
+      # ------ DAP -------
+      # ------------------
+      nvim-dap
+      nvim-dap-go
+      nvim-dap-ui
 
       # ------------------
       # ----- Silicon ----
@@ -77,19 +86,21 @@ in
 
     extraPackages = with pkgs; [
       # Telescope Dependencies
-      ripgrep
       fd
+      ripgrep
       tree-sitter
 
       # LSP Dependencies
+      go
+      gopls
+      nodePackages.eslint
       nodePackages.pyright
       nodePackages.typescript
       nodePackages.typescript-language-server
       nodePackages.vscode-langservers-extracted
-      gopls
-      go
 
       # Formatters
+      djlint
       luaformatter
       nixpkgs-fmt
       nodePackages.prettier

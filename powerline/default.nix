@@ -5,6 +5,7 @@
     enable = true;
     settings = {
       git-mode = "compact";
+      theme = "gruvbox";
     };
     modules = [
       "host"

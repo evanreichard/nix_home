@@ -1,7 +1,8 @@
 -- Set Theme
-vim.g.nord_borders = true
-vim.g.nord_contrast = true
-vim.cmd('colorscheme nord')
+-- vim.g.nord_borders = true
+-- vim.g.nord_contrast = true
+-- vim.cmd('colorscheme nord')
+vim.cmd('colorscheme melange')
 
 -- Set Leader
 vim.keymap.set("n", "<Space>", "<Nop>", {silent = true})

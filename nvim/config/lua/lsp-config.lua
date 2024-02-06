@@ -69,7 +69,8 @@ nvim_lsp.tsserver.setup {
         ["textDocument/publishDiagnostics"] = function() end
     },
     capabilities = capabilities,
-    cmd = {nix_vars.tsserver, "--stdio", "--tsserver-path", nix_vars.tslib}
+    cmd = {nix_vars.tsserver, "--stdio"}
+    -- cmd = {nix_vars.tsserver, "--stdio", "--tsserver-path", nix_vars.tslib}
 }
 
 -- Javascript / Typescript LSP Configuration
@@ -93,13 +94,28 @@ nvim_lsp.gopls.setup {
 ------------------------------------------------------
 local null_ls = require("null-ls")
 
+local eslint_root_files = {
+    ".eslintrc", ".eslintrc.js", ".eslintrc.json", ".eslintrc.yml"
+}
+local prettier_root_files = {
+    ".prettierrc", ".prettierrc.js", ".prettierrc.json"
+}
+
 null_ls.setup({
     sources = {
+        null_ls.builtins.formatting.prettier.with({
+            condition = function(utils)
+                return not utils.has_file(".eslintrc.yml")
+            end
+        }), null_ls.builtins.formatting.eslint.with({
+            condition = function(utils)
+                return utils.has_file(".eslintrc.yml")
+            end
+        }), null_ls.builtins.formatting.djlint.with({filetypes = {"template"}}),
         null_ls.builtins.completion.spell,
         null_ls.builtins.formatting.nixpkgs_fmt,
         null_ls.builtins.formatting.lua_format,
-        null_ls.builtins.formatting.prettier.with({filetypes = {"svelte"}}),
-        null_ls.builtins.formatting.prettier, null_ls.builtins.formatting.gofmt,
+        null_ls.builtins.formatting.gofmt,
         null_ls.builtins.diagnostics.sqlfluff,
         null_ls.builtins.formatting.sqlfluff
     },

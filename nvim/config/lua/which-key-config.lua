@@ -15,6 +15,13 @@ wk.register({
             e = {"Open Diagnostic Float"}
         },
         d = {
+            name = "Debug",
+            b = {"Toggle Breakpoint"},
+            u = {"Toggle UI"},
+            c = {"Continue"},
+            t = {"Run Test"}
+        },
+        g = {
             name = "DiffView",
             o = {"<cmd>DiffviewOpen<cr>", "Open Diff"},
             c = {"<cmd>DiffviewClose<cr>", "Close Diff"},
