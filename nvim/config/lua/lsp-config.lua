@@ -41,7 +41,7 @@ nvim_lsp.html.setup {
     on_attach = on_attach_no_formatting,
     flags = lsp_flags,
     capabilities = capabilities,
-    cmd = {nix_vars.vscodels .. "/bin/vscode-html-language-server", "--stdio"}
+    cmd = {nix_vars.vscls, "--stdio"}
 }
 
 -- JSON LSP Configuration
@@ -49,7 +49,7 @@ nvim_lsp.jsonls.setup {
     on_attach = on_attach_no_formatting,
     flags = lsp_flags,
     capabilities = capabilities,
-    cmd = {nix_vars.vscodels .. "/bin/vscode-json-language-server", "--stdio"}
+    cmd = {nix_vars.vscls, "--stdio"}
 }
 
 -- CSS LSP Configuration
@@ -57,7 +57,7 @@ nvim_lsp.cssls.setup {
     on_attach = on_attach_no_formatting,
     flags = lsp_flags,
     capabilities = capabilities,
-    cmd = {nix_vars.vscodels .. "/bin/vscode-css-language-server", "--stdio"}
+    cmd = {nix_vars.vscls, "--stdio"}
 }
 
 -- Typescript / Javascript LSP Configuration
@@ -69,8 +69,7 @@ nvim_lsp.tsserver.setup {
         ["textDocument/publishDiagnostics"] = function() end
     },
     capabilities = capabilities,
-    cmd = {nix_vars.tsserver, "--stdio"}
-    -- cmd = {nix_vars.tsserver, "--stdio", "--tsserver-path", nix_vars.tslib}
+    cmd = {nix_vars.tsls, "--stdio"}
 }
 
 -- Javascript / Typescript LSP Configuration
@@ -78,15 +77,18 @@ nvim_lsp.eslint.setup {
     on_attach = on_attach_no_formatting,
     flags = lsp_flags,
     capabilities = capabilities,
-    cmd = {nix_vars.vscodels .. "/bin/vscode-eslint-language-server", "--stdio"}
+    cmd = {nix_vars.vscls, "--stdio"}
 }
+
+-- Svelte LSP Configuration
+nvim_lsp.svelte.setup {cmd = {nix_vars.sveltels, "--stdio"}}
 
 -- Go LSP Configuration
 nvim_lsp.gopls.setup {
     on_attach = on_attach_no_formatting,
     flags = lsp_flags,
     capabilities = capabilities,
-    cmd = {nix_vars.gopls .. "/bin/gopls"}
+    cmd = {nix_vars.gopls}
 }
 
 ------------------------------------------------------
@@ -112,6 +114,7 @@ null_ls.setup({
                 return utils.has_file(".eslintrc.yml")
             end
         }), null_ls.builtins.formatting.djlint.with({filetypes = {"template"}}),
+        null_ls.builtins.formatting.prettier.with({filetypes = {"svelte"}}),
         null_ls.builtins.completion.spell,
         null_ls.builtins.formatting.nixpkgs_fmt,
         null_ls.builtins.formatting.lua_format,

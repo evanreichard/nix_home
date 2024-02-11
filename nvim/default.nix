@@ -95,6 +95,7 @@ in
       gopls
       nodePackages.eslint
       nodePackages.pyright
+      nodePackages.svelte-language-server
       nodePackages.typescript
       nodePackages.typescript-language-server
       nodePackages.vscode-langservers-extracted
@@ -124,10 +125,10 @@ in
     # Generate Nix Vars
     "nvim/lua/nix-vars.lua".text = ''
       local nix_vars = {
-        tsserver = "${pkgs.nodePackages.typescript-language-server}/bin/typescript-language-server",
-        tslib = "${pkgs.nodePackages.typescript}/lib/node_modules/typescript/lib/",
-        vscodels = "${pkgs.nodePackages.vscode-langservers-extracted}",
-        gopls = "${pkgs.gopls}",
+        gopls = "${pkgs.gopls}/bin/gopls",
+        sveltels = "${pkgs.nodePackages.svelte-language-server}/bin/svelteserver",
+        tsls = "${pkgs.nodePackages.typescript-language-server}/bin/typescript-language-server",
+        vscls = "${pkgs.nodePackages.vscode-langservers-extracted}/bin/vscode-html-language-server",
       }
       return nix_vars
     '';
