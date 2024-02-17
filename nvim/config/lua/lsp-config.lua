@@ -81,7 +81,12 @@ nvim_lsp.eslint.setup {
 }
 
 -- Svelte LSP Configuration
-nvim_lsp.svelte.setup {cmd = {nix_vars.sveltels, "--stdio"}}
+nvim_lsp.svelte.setup {
+    on_attach = on_attach_no_formatting,
+    flags = lsp_flags,
+    capabilities = capabilities,
+    cmd = {nix_vars.sveltels, "--stdio"}
+}
 
 -- Go LSP Configuration
 nvim_lsp.gopls.setup {
