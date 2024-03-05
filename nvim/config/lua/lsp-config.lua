@@ -41,7 +41,7 @@ nvim_lsp.html.setup {
     on_attach = on_attach_no_formatting,
     flags = lsp_flags,
     capabilities = capabilities,
-    cmd = {nix_vars.vscls, "--stdio"}
+    cmd = {nix_vars.vscls .. "/bin/vscode-html-language-server", "--stdio"}
 }
 
 -- JSON LSP Configuration
@@ -49,7 +49,7 @@ nvim_lsp.jsonls.setup {
     on_attach = on_attach_no_formatting,
     flags = lsp_flags,
     capabilities = capabilities,
-    cmd = {nix_vars.vscls, "--stdio"}
+    cmd = {nix_vars.vscls .. "/bin/vscode-html-language-server", "--stdio"}
 }
 
 -- CSS LSP Configuration
@@ -57,27 +57,20 @@ nvim_lsp.cssls.setup {
     on_attach = on_attach_no_formatting,
     flags = lsp_flags,
     capabilities = capabilities,
-    cmd = {nix_vars.vscls, "--stdio"}
+    cmd = {nix_vars.vscls .. "/bin/vscode-html-language-server", "--stdio"}
 }
 
 -- Typescript / Javascript LSP Configuration
 nvim_lsp.tsserver.setup {
+    -- on_attach = on_attach,
     on_attach = on_attach_no_formatting,
     flags = lsp_flags,
-    handlers = {
-        -- Disable Diagnostics (ESLints Job)
-        ["textDocument/publishDiagnostics"] = function() end
-    },
+    -- handlers = {
+    --     -- Disable Diagnostics (ESLints Job)
+    --     ["textDocument/publishDiagnostics"] = function() end
+    -- },
     capabilities = capabilities,
     cmd = {nix_vars.tsls, "--stdio"}
-}
-
--- Javascript / Typescript LSP Configuration
-nvim_lsp.eslint.setup {
-    on_attach = on_attach_no_formatting,
-    flags = lsp_flags,
-    capabilities = capabilities,
-    cmd = {nix_vars.vscls, "--stdio"}
 }
 
 -- Svelte LSP Configuration
@@ -101,25 +94,51 @@ nvim_lsp.gopls.setup {
 ------------------------------------------------------
 local null_ls = require("null-ls")
 
-local eslint_root_files = {
-    ".eslintrc", ".eslintrc.js", ".eslintrc.json", ".eslintrc.yml"
-}
-local prettier_root_files = {
-    ".prettierrc", ".prettierrc.js", ".prettierrc.json"
-}
+local function has_file_in_parents(current_dir, file_pattern)
+    -- Check if directory has file pattern
+    local function has_file(dir)
+        local handle = vim.loop.fs_scandir(dir)
+        if handle then
+            while true do
+                local name, type = vim.loop.fs_scandir_next(handle)
+                if not name then break end
+                if type == "file" and name:match(file_pattern) then
+                    return true
+                end
+            end
+        end
+        return false
+    end
+
+    -- Continously walk upwards
+    while true do
+        if has_file(current_dir) then return true end
+        local parent_dir = vim.fn.fnamemodify(current_dir, ":h")
+        if parent_dir == current_dir then break end
+        current_dir = parent_dir
+    end
+
+    -- No match found
+    return false
+end
 
 null_ls.setup({
     sources = {
+        -- Prettier Formatting
         null_ls.builtins.formatting.prettier.with({
             condition = function(utils)
-                return not utils.has_file(".eslintrc.yml")
+                return has_file_in_parents(vim.fn.getcwd(), "^%.prettierrc%.")
             end
-        }), null_ls.builtins.formatting.eslint.with({
+        }), -- ESLint Diagnostics & Formatting
+        null_ls.builtins.diagnostics.eslint_d.with({
             condition = function(utils)
-                return utils.has_file(".eslintrc.yml")
+                return has_file_in_parents(vim.fn.getcwd(), "^%.eslintrc%.")
+            end
+        }), null_ls.builtins.formatting.eslint_d.with({
+            condition = function(utils)
+                return has_file_in_parents(vim.fn.getcwd(), "^%.eslintrc%.")
             end
         }), null_ls.builtins.formatting.djlint.with({filetypes = {"template"}}),
-        null_ls.builtins.formatting.prettier.with({filetypes = {"svelte"}}),
         null_ls.builtins.completion.spell,
         null_ls.builtins.formatting.nixpkgs_fmt,
         null_ls.builtins.formatting.lua_format,

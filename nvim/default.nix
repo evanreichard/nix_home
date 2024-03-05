@@ -94,6 +94,7 @@ in
       go
       gopls
       nodePackages.eslint
+      nodePackages.eslint_d
       nodePackages.pyright
       nodePackages.svelte-language-server
       nodePackages.typescript
@@ -128,7 +129,7 @@ in
         gopls = "${pkgs.gopls}/bin/gopls",
         sveltels = "${pkgs.nodePackages.svelte-language-server}/bin/svelteserver",
         tsls = "${pkgs.nodePackages.typescript-language-server}/bin/typescript-language-server",
-        vscls = "${pkgs.nodePackages.vscode-langservers-extracted}/bin/vscode-html-language-server",
+        vscls = "${pkgs.nodePackages.vscode-langservers-extracted}",
       }
       return nix_vars
     '';
