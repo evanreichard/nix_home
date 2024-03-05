@@ -25,6 +25,9 @@
       merge = {
         conflictstyle = "zdiff3";
       };
+      push = {
+        autoSetupRemote = true;
+      };
     };
   };
 
