@@ -6,6 +6,16 @@ local nvim_lsp = require('lspconfig')
 
 local on_attach = function(client, bufnr)
     local bufopts = {noremap = true, silent = true, buffer = bufnr}
+
+    if client.supports_method("textDocument/formatting") then
+        vim.api.nvim_clear_autocmds({group = augroup, buffer = bufnr})
+        vim.api.nvim_create_autocmd("BufWritePre", {
+            group = augroup,
+            buffer = bufnr,
+            callback = function() vim.lsp.buf.format({async = false}) end
+        })
+    end
+
     vim.keymap.set('n', 'K', vim.lsp.buf.hover, bufopts)
     vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help, bufopts)
     vim.keymap.set('n', '<leader>lD', vim.lsp.buf.declaration, bufopts)
@@ -19,10 +29,28 @@ local on_attach = function(client, bufnr)
 end
 
 local on_attach_no_formatting = function(client, bufnr)
-    -- Disable Formatting (Prettiers Job - null-ls)
+    -- Disable Formatting
     client.server_capabilities.documentFormattingProvider = false
     client.server_capabilities.documentRangeFormattingProvider = false
     on_attach(client, bufnr)
+end
+
+local organize_go_imports = function()
+    local encoding = vim.lsp.util._get_offset_encoding()
+    local params = vim.lsp.util.make_range_params(nil, encoding)
+    params.context = {only = {"source.organizeImports"}}
+
+    local result = vim.lsp.buf_request_sync(0, "textDocument/codeAction",
+                                            params, 3000)
+    for _, res in pairs(result or {}) do
+        for _, r in pairs(res.result or {}) do
+            if r.edit then
+                vim.lsp.util.apply_workspace_edit(r.edit, encoding)
+            else
+                vim.lsp.buf.execute_command(r.command)
+            end
+        end
+    end
 end
 
 -- Define LSP Flags & Capabilities
@@ -62,13 +90,8 @@ nvim_lsp.cssls.setup {
 
 -- Typescript / Javascript LSP Configuration
 nvim_lsp.tsserver.setup {
-    -- on_attach = on_attach,
     on_attach = on_attach_no_formatting,
     flags = lsp_flags,
-    -- handlers = {
-    --     -- Disable Diagnostics (ESLints Job)
-    --     ["textDocument/publishDiagnostics"] = function() end
-    -- },
     capabilities = capabilities,
     cmd = {nix_vars.tsls, "--stdio"}
 }
@@ -83,7 +106,11 @@ nvim_lsp.svelte.setup {
 
 -- Go LSP Configuration
 nvim_lsp.gopls.setup {
-    on_attach = on_attach_no_formatting,
+    on_attach = function(client, bufnr)
+        on_attach(client, bufnr)
+        vim.api.nvim_create_autocmd("BufWritePre",
+                                    {callback = organize_go_imports})
+    end,
     flags = lsp_flags,
     capabilities = capabilities,
     cmd = {nix_vars.gopls}
@@ -127,7 +154,7 @@ null_ls.setup({
         -- Prettier Formatting
         null_ls.builtins.formatting.prettier.with({
             condition = function(utils)
-                return has_file_in_parents(vim.fn.getcwd(), "^%.prettierrc%.")
+                return not has_file_in_parents(vim.fn.getcwd(), "^%.eslintrc%.")
             end
         }), -- ESLint Diagnostics & Formatting
         null_ls.builtins.diagnostics.eslint_d.with({
@@ -142,7 +169,6 @@ null_ls.setup({
         null_ls.builtins.completion.spell,
         null_ls.builtins.formatting.nixpkgs_fmt,
         null_ls.builtins.formatting.lua_format,
-        null_ls.builtins.formatting.gofmt,
         null_ls.builtins.diagnostics.sqlfluff,
         null_ls.builtins.formatting.sqlfluff
     },
@@ -153,7 +179,7 @@ null_ls.setup({
                 group = augroup,
                 buffer = bufnr,
                 callback = function()
-                    vim.lsp.buf.format({async = true})
+                    vim.lsp.buf.format({async = false})
                 end
             })
         end
