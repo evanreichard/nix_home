@@ -108,8 +108,11 @@ nvim_lsp.svelte.setup {
 nvim_lsp.gopls.setup {
     on_attach = function(client, bufnr)
         on_attach(client, bufnr)
-        vim.api.nvim_create_autocmd("BufWritePre",
-                                    {callback = organize_go_imports})
+        vim.api.nvim_create_autocmd("BufWritePre", {
+            group = augroup,
+            buffer = bufnr,
+            callback = organize_go_imports
+        })
     end,
     flags = lsp_flags,
     capabilities = capabilities,
