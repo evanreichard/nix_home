@@ -119,6 +119,20 @@ nvim_lsp.gopls.setup {
     cmd = {nix_vars.gopls}
 }
 
+-- Go LSP Linting
+nvim_lsp.golangci_lint_ls.setup {
+    on_attach = on_attach_no_formatting,
+    flags = lsp_flags,
+    capabilities = capabilities,
+    cmd = {nix_vars.golintls},
+    init_options = {
+        command = {
+            "golangci-lint", "run", "--enable-all", "--disable", "lll",
+            "--out-format", "json", "--issues-exit-code=1"
+        }
+    }
+}
+
 ------------------------------------------------------
 --------------------- Null-LS LSP --------------------
 ------------------------------------------------------

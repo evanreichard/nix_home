@@ -92,6 +92,8 @@ in
 
       # LSP Dependencies
       go
+      golangci-lint
+      golangci-lint-langserver
       gopls
       nodePackages.eslint
       nodePackages.eslint_d
@@ -129,6 +131,7 @@ in
         gopls = "${pkgs.gopls}/bin/gopls",
         sveltels = "${pkgs.nodePackages.svelte-language-server}/bin/svelteserver",
         tsls = "${pkgs.nodePackages.typescript-language-server}/bin/typescript-language-server",
+        golintls = "${pkgs.golangci-lint-langserver}/bin/golangci-lint-langserver",
         vscls = "${pkgs.nodePackages.vscode-langservers-extracted}",
       }
       return nix_vars
