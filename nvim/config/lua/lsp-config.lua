@@ -127,8 +127,8 @@ nvim_lsp.golangci_lint_ls.setup {
     cmd = {nix_vars.golintls},
     init_options = {
         command = {
-            "golangci-lint", "run", "--enable-all", "--disable", "lll",
-            "--out-format", "json", "--issues-exit-code=1"
+            "golangci-lint", "run", "--out-format", "json",
+            "--issues-exit-code=1"
         }
     }
 }
