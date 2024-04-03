@@ -21,6 +21,7 @@
       core = {
         autocrlf = "input";
         safecrlf = "true";
+        excludesFile = "~/.config/git/.gitignore";
       };
       merge = {
         conflictstyle = "zdiff3";
@@ -40,5 +41,4 @@
     };
 
   };
-
 }
