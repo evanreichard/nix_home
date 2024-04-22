@@ -27,12 +27,10 @@ in
   home.packages = with pkgs; [
     (nerdfonts.override { fonts = [ "Meslo" ]; })
     android-tools
-    awscli2
     bashInteractive
+    gitAndTools.gh
     google-cloud-sdk
-    htop
     imagemagick
-    k9s
     kubectl
     mosh
     neofetch
@@ -43,8 +41,19 @@ in
     kitty
   ] ++ optionals isLinux [ ];
 
+  # GitHub CLI
+  programs.gh = {
+    enable = true;
+    settings = {
+      git_protocol = "ssh";
+    };
+  };
+
   # Misc Programs
+  programs.awscli.enable = true;
+  programs.htop.enable = true;
   programs.jq.enable = true;
+  programs.k9s.enable = true;
   programs.pandoc.enable = true;
 
   # Enable Flakes & Commands
