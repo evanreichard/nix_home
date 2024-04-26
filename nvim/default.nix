@@ -31,6 +31,7 @@ in
       aerial-nvim # Code Outline
       comment-nvim # Code Comments
       diffview-nvim # Diff View
+      gitsigns-nvim # Git Blame
       leap-nvim # Quick Movement
       markdown-preview-nvim # Markdown Preview
       neo-tree-nvim # File Explorer

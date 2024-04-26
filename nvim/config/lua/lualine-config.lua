@@ -15,7 +15,7 @@ local function execute_command()
     local spawn_opts = {
         detached = true,
         stdio = {nil, stdout, nil},
-        args = {"-c", "gh pr checks | awk '{ print $2 }'"}
+        args = {"-c", "gh pr checks | awk -F'\t' '{ print $2 }'"}
     }
 
     vim.loop.spawn("bash", spawn_opts,
@@ -29,14 +29,14 @@ vim.fn.timer_start(300000, execute_command)
 -- Return status from cache
 function pr_status()
     --   
-    --   
+    --    
     --
     -- PENDING COLOR - #d29922
     -- PASS COLOR - #3fb950
     -- FAIL COLOR - #f85149
     return cached_pr_status:gsub("\n", ""):gsub("fail", " "):gsub("pass",
                                                                      " ")
-               :gsub("pending", " "):sub(1, -2)
+               :gsub("pending", " "):gsub("skipping", " "):sub(1, -2)
 end
 
 require('lualine').setup({

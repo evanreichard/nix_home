@@ -23,9 +23,16 @@ wk.register({
         },
         g = {
             name = "DiffView",
-            o = {"<cmd>DiffviewOpen<cr>", "Open Diff"},
+            o = {"<cmd>DiffviewOpen<cr>", "Open Diff - Current"},
+            O = {"<cmd>DiffviewOpen origin/main...HEAD<cr>", "Open Diff - Main"},
+            h = {"<cmd>DiffviewFileHistory<cr>", "Diff History"},
+            H = {
+                "<cmd>DiffviewFileHistory --range=origin..HEAD<cr>",
+                "Diff History - Main"
+            },
             c = {"<cmd>DiffviewClose<cr>", "Close Diff"},
-            h = {"<cmd>DiffviewFileHistory<cr>", "Diff History"}
+            b = {"Git Blame Line"},
+            B = {"Git Blame Full"}
         },
         f = {
             name = "Find - Telescope",

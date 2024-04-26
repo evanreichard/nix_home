@@ -27,6 +27,7 @@ in
   home.packages = with pkgs; [
     (nerdfonts.override { fonts = [ "Meslo" ]; })
     android-tools
+    awscli2
     bashInteractive
     gitAndTools.gh
     google-cloud-sdk
@@ -50,7 +51,6 @@ in
   };
 
   # Misc Programs
-  programs.awscli.enable = true;
   programs.htop.enable = true;
   programs.jq.enable = true;
   programs.k9s.enable = true;
