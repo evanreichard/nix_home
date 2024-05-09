@@ -37,6 +37,7 @@ in
     neofetch
     pre-commit
     python311
+    ssm-session-manager-plugin
     tldr
   ] ++ optionals isDarwin [
     kitty
