@@ -40,6 +40,7 @@ in
       nvim-autopairs # Automatically Close Pairs (),[],{}
       telescope-fzf-native-nvim # Faster Telescope
       telescope-nvim # Fuzzy Finder
+      telescope-ui-select-nvim # UI
       toggleterm-nvim # Terminal Helper
       vim-nix # Nix Helpers
       which-key-nvim # Shortcut Helper
@@ -83,6 +84,21 @@ in
           meta.homepage = "https://github.com/mhanberg/silicon.lua/";
         }
       )
+
+      (
+        pkgs.vimUtils.buildVimPlugin {
+          pname = "llm.nvim";
+          version = "2024-05-25";
+          src = pkgs.fetchFromGitHub {
+            owner = "David-Kunz";
+            repo = "gen.nvim";
+            rev = "bd19cf584b5b82123de977b44105e855e61e5f39";
+            sha256 = "sha256-0AEB6im8Jz5foYzmL6KEGSAYo48g1bkFpjlCSWT6JeE=";
+          };
+          meta.homepage = "https://github.com/David-Kunz/gen.nvim/";
+        }
+      )
+
     ];
 
     extraPackages = with pkgs; [
