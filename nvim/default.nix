@@ -112,6 +112,7 @@ in
       golangci-lint
       golangci-lint-langserver
       gopls
+      lua-language-server
       nodePackages.eslint
       nodePackages.eslint_d
       nodePackages.pyright
@@ -146,6 +147,7 @@ in
     "nvim/lua/nix-vars.lua".text = ''
       local nix_vars = {
         gopls = "${pkgs.gopls}/bin/gopls",
+        luals = "${pkgs.lua-language-server}/bin/lua-language-server",
         sveltels = "${pkgs.nodePackages.svelte-language-server}/bin/svelteserver",
         tsls = "${pkgs.nodePackages.typescript-language-server}/bin/typescript-language-server",
         golintls = "${pkgs.golangci-lint-langserver}/bin/golangci-lint-langserver",

@@ -115,6 +115,14 @@ nvim_lsp.svelte.setup {
     cmd = {nix_vars.sveltels, "--stdio"}
 }
 
+-- Lua LSP Configuration
+nvim_lsp.lua_ls.setup {
+    on_attach = on_attach_no_formatting,
+    flags = lsp_flags,
+    capabilities = capabilities,
+    cmd = {nix_vars.luals}
+}
+
 -- Go LSP Configuration
 nvim_lsp.gopls.setup {
     on_attach = function(client, bufnr)
@@ -160,8 +168,9 @@ has_eslint_in_parents = function(fname)
     root_file = nvim_lsp.util.insert_package_json(eslintFiles, 'eslintConfig',
                                                   fname)
     return nvim_lsp.util.root_pattern(unpack(root_file))(fname)
+end
 
-end, null_ls.setup({
+null_ls.setup({
     sources = {
         -- Prettier Formatting
         null_ls.builtins.formatting.prettier.with({
