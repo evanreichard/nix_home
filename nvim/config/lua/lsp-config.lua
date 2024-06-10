@@ -173,16 +173,8 @@ end
 null_ls.setup({
     sources = {
         -- Prettier Formatting
-        null_ls.builtins.formatting.prettier.with({
-            condition = function(utils)
-                return not has_eslint_in_parents(vim.fn.getcwd())
-            end
-        }), -- ESLint Diagnostics & Formatting
+        null_ls.builtins.formatting.prettier,
         null_ls.builtins.diagnostics.eslint_d.with({
-            condition = function(utils)
-                return has_eslint_in_parents(vim.fn.getcwd())
-            end
-        }), null_ls.builtins.formatting.eslint_d.with({
             condition = function(utils)
                 return has_eslint_in_parents(vim.fn.getcwd())
             end

@@ -10,6 +10,7 @@
     };
     profileExtra = ''
       SHELL="$BASH"
+      PATH=~/.bin:$PATH
       set -o vi
       bind "set show-mode-in-prompt on"
       neofetch

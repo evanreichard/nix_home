@@ -29,6 +29,7 @@ in
     android-tools
     awscli2
     bashInteractive
+    cw
     gitAndTools.gh
     google-cloud-sdk
     imagemagick
