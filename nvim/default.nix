@@ -25,9 +25,9 @@ in
       nvim-cmp # Completions
       nvim-lspconfig # LSP Config
 
-      # ------------------
-      # ----- Helpers ----
-      # ------------------
+      # -------------------
+      # ----- Helpers -----
+      # -------------------
       aerial-nvim # Code Outline
       comment-nvim # Code Comments
       diffview-nvim # Diff View
@@ -61,16 +61,33 @@ in
       nvim-treesitter-context
       nvim-treesitter.withAllGrammars
 
-      # ------------------
-      # ------ DAP -------
-      # ------------------
+      # -------------------
+      # ------- DAP -------
+      # -------------------
       nvim-dap
       nvim-dap-go
       nvim-dap-ui
 
-      # ------------------
-      # ----- Silicon ----
-      # ------------------
+      # --------------------
+      # -- NONE-LS EXTRAS --
+      # --------------------
+      (
+        pkgs.vimUtils.buildVimPlugin {
+          pname = "none-ls-extras.nvim";
+          version = "2024-06-11";
+          src = pkgs.fetchFromGitHub {
+            owner = "nvimtools";
+            repo = "none-ls-extras.nvim";
+            rev = "336e84b9e43c0effb735b08798ffac382920053b";
+            sha256 = "sha256-UtU4oWSRTKdEoMz3w8Pk95sROuo3LEwxSDAm169wxwk=";
+          };
+          meta.homepage = "https://github.com/nvimtools/none-ls-extras.nvim/";
+        }
+      )
+
+      # -------------------
+      # ----- Silicon -----
+      # -------------------
       (
         pkgs.vimUtils.buildVimPlugin {
           pname = "silicon.lua";
@@ -85,6 +102,9 @@ in
         }
       )
 
+      # -------------------
+      # ------- LLM -------
+      # -------------------
       (
         pkgs.vimUtils.buildVimPlugin {
           pname = "llm.nvim";
@@ -127,6 +147,7 @@ in
       nixpkgs-fmt
       nodePackages.prettier
       sqlfluff
+      stylua
 
       # Silicon
       silicon
