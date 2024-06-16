@@ -34,6 +34,7 @@ in
     google-cloud-sdk
     imagemagick
     kubectl
+    kubernetes-helm
     mosh
     neofetch
     pre-commit
