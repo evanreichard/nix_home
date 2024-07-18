@@ -142,7 +142,6 @@ in
       nodePackages.vscode-langservers-extracted
 
       # Formatters
-      djlint
       luaformatter
       nixpkgs-fmt
       nodePackages.prettier
