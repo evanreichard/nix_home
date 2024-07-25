@@ -20,7 +20,7 @@ in
   # Home Manager Config
   home.username = "evanreichard";
   home.homeDirectory = "/Users/evanreichard";
-  home.stateVersion = "23.11";
+  home.stateVersion = "24.05";
   programs.home-manager.enable = true;
 
   # Global Packages
@@ -40,6 +40,7 @@ in
     pre-commit
     python311
     ssm-session-manager-plugin
+    thefuck
     tldr
   ] ++ optionals isDarwin [
     kitty

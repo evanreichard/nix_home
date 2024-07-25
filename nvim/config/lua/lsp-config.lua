@@ -184,9 +184,8 @@ end
 null_ls.setup({
 	sources = {
 		-- Prettier Formatting
-		null_ls.builtins.formatting.prettier.with({
-			extra_filetypes = { "template" },
-		}),
+		null_ls.builtins.formatting.prettier,
+		null_ls.builtins.formatting.prettier.with({ filetypes = { "template" } }),
 		require("none-ls.diagnostics.eslint_d").with({
 			condition = function(utils)
 				return has_eslint_in_parents(vim.fn.getcwd())

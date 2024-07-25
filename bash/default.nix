@@ -11,6 +11,7 @@
     profileExtra = ''
       SHELL="$BASH"
       PATH=~/.bin:$PATH
+      eval "$(thefuck --alias)"
       set -o vi
       bind "set show-mode-in-prompt on"
       neofetch
