@@ -8,6 +8,12 @@ vim.api.nvim_create_autocmd("FileType", {
 	end,
 })
 
+vim.filetype.add({
+	extension = {
+		templ = "templ",
+	},
+})
+
 ------------------------------------------------------
 -------------------- Built-in LSP --------------------
 ------------------------------------------------------
@@ -122,6 +128,13 @@ nvim_lsp.lua_ls.setup({
 	flags = lsp_flags,
 	capabilities = capabilities,
 	cmd = { nix_vars.luals },
+})
+
+-- Templ LSP Configuration
+nvim_lsp.templ.setup({
+	on_attach = on_attach,
+	flags = lsp_flags,
+	capabilities = capabilities,
 })
 
 -- Go LSP Configuration
