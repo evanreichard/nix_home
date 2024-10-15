@@ -150,6 +150,11 @@ nvim_lsp.gopls.setup({
 	flags = lsp_flags,
 	capabilities = capabilities,
 	cmd = { nix_vars.gopls },
+	settings = {
+		gopls = {
+			buildFlags = { "-tags=e2e" },
+		},
+	},
 })
 
 -- Go LSP Linting
