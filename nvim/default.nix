@@ -1,6 +1,7 @@
 { config, pkgs, ... }:
 let
   inherit (pkgs.lib.lists) subtractLists;
+  unstable = import <nixpkgs-unstable> { };
 in
 {
   programs.neovim = {
@@ -134,7 +135,7 @@ in
       gopls
       lua-language-server
       nodePackages.eslint
-      nodePackages.eslint_d
+      unstable.eslint_d
       nodePackages.pyright
       nodePackages.svelte-language-server
       nodePackages.typescript
