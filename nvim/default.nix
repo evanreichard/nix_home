@@ -135,12 +135,12 @@ in
       gopls
       lua-language-server
       nodePackages.eslint
-      unstable.eslint_d
-      nodePackages.pyright
       nodePackages.svelte-language-server
       nodePackages.typescript
       nodePackages.typescript-language-server
       nodePackages.vscode-langservers-extracted
+      pyright
+      unstable.eslint_d
 
       # Formatters
       luaformatter

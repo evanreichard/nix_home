@@ -107,7 +107,7 @@ nvim_lsp.cssls.setup({
 })
 
 -- Typescript / Javascript LSP Configuration
-nvim_lsp.tsserver.setup({
+nvim_lsp.ts_ls.setup({
 	on_attach = on_attach_no_formatting,
 	flags = lsp_flags,
 	capabilities = capabilities,

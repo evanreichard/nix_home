@@ -4,11 +4,11 @@
 
 ```bash
 # Update System Channels
-sudo nix-channel --add https://nixos.org/channels/nixpkgs-24.05-darwin nixpkgs
+sudo nix-channel --add https://nixos.org/channels/nixpkgs-24.11-darwin nixpkgs
 sudo nix-channel --update
 
 # Update Home Manager
-nix-channel --add https://github.com/nix-community/home-manager/archive/release-24.05.tar.gz home-manager
+nix-channel --add https://github.com/nix-community/home-manager/archive/release-24.11.tar.gz home-manager
 nix-channel --update
 
 # Build Home Manager

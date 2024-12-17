@@ -42,6 +42,7 @@ in
     ssm-session-manager-plugin
     thefuck
     tldr
+    texliveSmall # Pandoc PDF Dep
   ] ++ optionals isDarwin [
     kitty
   ] ++ optionals isLinux [ ];
