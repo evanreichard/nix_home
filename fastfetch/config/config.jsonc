@@ -1,0 +1,93 @@
+{
+  "modules": [
+    {
+      "type": "separator",
+      "string": "",
+      "length": 35,
+    },
+    {
+      "type": "title",
+      "format": "Hardware Information",
+    },
+    {
+      "type": "cpu",
+      "key": " ",
+    },
+    {
+      "type": "memory",
+      "key": " ",
+    },
+    {
+      "type": "display",
+      "key": "󰍹 ",
+    },
+    {
+      "type": "separator",
+    },
+    {
+      "type": "title",
+      "format": "Software Information",
+    },
+    {
+      "type": "os",
+      "key": " ",
+    },
+    {
+      "type": "kernel",
+      "key": " ",
+    },
+    {
+      "type": "terminal",
+      "key": " ",
+    },
+    {
+      "type": "packages",
+      "key": "󰏖 ",
+    },
+    {
+      "type": "terminalfont",
+      "key": " ",
+    },
+    {
+      "type": "separator",
+    },
+    {
+      "type": "title",
+      "format": "Network Information",
+    },
+    {
+      "type": "publicip",
+      "key": " ",
+    },
+    {
+      "type": "localip",
+      "key": " ",
+    },
+    {
+      "type": "separator",
+    },
+    {
+      "type": "custom",
+      "format": "   {#white}   {#red}   {#green}   {#yellow}   {#blue}   {#magenta}   {#cyan}   {#white}\n",
+    },
+  ],
+  "display": {
+    "separator": "  ",
+    "key": {
+      "width": 7,
+    },
+    "color": {
+      "keys": "yellow",
+      "title": "blue",
+    },
+  },
+  "settings": {
+    "kernelFormat": "minimal",
+    "memoryUnit": "gib",
+    "temperatureUnit": "celsius",
+    "publicIpTimeout": 2000,
+    "publicIpHost": "http://ident.me",
+    "diskUnit": "gib",
+    "showDisks": ["/"],
+  },
+}

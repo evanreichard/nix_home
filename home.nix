@@ -11,7 +11,7 @@ in
     ./ghostty
     ./git
     ./htop
-    ./neofetch
+    ./fastfetch
     ./nvim
     ./powerline
     ./readline
@@ -37,7 +37,7 @@ in
     kubectl
     kubernetes-helm
     mosh
-    neofetch
+    fastfetch
     pre-commit
     python311
     ssm-session-manager-plugin
