@@ -8,9 +8,9 @@ in
   imports = [
     ./bash
     ./direnv
+    ./ghostty
     ./git
     ./htop
-    ./kitty
     ./neofetch
     ./nvim
     ./powerline
@@ -20,7 +20,7 @@ in
   # Home Manager Config
   home.username = "evanreichard";
   home.homeDirectory = "/Users/evanreichard";
-  home.stateVersion = "24.05";
+  home.stateVersion = "24.11";
   programs.home-manager.enable = true;
 
   # Global Packages
@@ -30,6 +30,7 @@ in
     awscli2
     bashInteractive
     cw
+    # ghostty - Pending Darwin @ https://github.com/NixOS/nixpkgs/pull/369788
     gitAndTools.gh
     google-cloud-sdk
     imagemagick
@@ -40,12 +41,12 @@ in
     pre-commit
     python311
     ssm-session-manager-plugin
+    texliveSmall # Pandoc PDF Dep
     thefuck
     tldr
-    texliveSmall # Pandoc PDF Dep
-  ] ++ optionals isDarwin [
-    kitty
-  ] ++ optionals isLinux [ ];
+  ]
+  ++ optionals isDarwin [ ]
+  ++ optionals isLinux [ ];
 
   # GitHub CLI
   programs.gh = {
@@ -74,28 +75,28 @@ in
   '';
 
   # Darwin Spotlight Indexing Hack
-  home.activation = mkIf isDarwin {
-    copyApplications =
-      let
-        apps = pkgs.buildEnv {
-          name = "home-manager-applications";
-          paths = config.home.packages;
-          pathsToLink = "/Applications";
-        };
-      in
-      lib.hm.dag.entryAfter [ "writeBoundary" ] ''
-        baseDir="$HOME/Applications/Home Manager Apps"
-        if [ -d "$baseDir" ]; then
-          rm -rf "$baseDir"
-        fi
-        mkdir -p "$baseDir"
-        for appFile in ${apps}/Applications/*; do
-          target="$baseDir/$(basename "$appFile")"
-          $DRY_RUN_CMD cp ''${VERBOSE_ARG:+-v} -fHRL "$appFile" "$baseDir"
-          $DRY_RUN_CMD chmod ''${VERBOSE_ARG:+-v} -R +w "$target"
-        done
-      '';
-  };
+  # home.activation = mkIf isDarwin {
+  #   copyApplications =
+  #     let
+  #       apps = pkgs.buildEnv {
+  #         name = "home-manager-applications";
+  #         paths = config.home.packages;
+  #         pathsToLink = "/Applications";
+  #       };
+  #     in
+  #     lib.hm.dag.entryAfter [ "writeBoundary" ] ''
+  #       baseDir="$HOME/Applications/Home Manager Apps"
+  #       if [ -d "$baseDir" ]; then
+  #         rm -rf "$baseDir"
+  #       fi
+  #       mkdir -p "$baseDir"
+  #       for appFile in ${apps}/Applications/*; do
+  #         target="$baseDir/$(basename "$appFile")"
+  #         $DRY_RUN_CMD cp ''${VERBOSE_ARG:+-v} -fHRL "$appFile" "$baseDir"
+  #         $DRY_RUN_CMD chmod ''${VERBOSE_ARG:+-v} -R +w "$target"
+  #       done
+  #     '';
+  # };
 
   # Darwin Spotlight Indexing Hack
   disabledModules = [ "targets/darwin/linkapps.nix" ];
