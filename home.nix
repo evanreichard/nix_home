@@ -26,18 +26,28 @@ in
   # Global Packages
   home.packages = with pkgs; [
     (nerdfonts.override { fonts = [ "Meslo" ]; })
+    # ghostty - Pending Darwin @ https://github.com/NixOS/nixpkgs/pull/369788
     android-tools
     awscli2
     bashInteractive
     cw
-    # ghostty - Pending Darwin @ https://github.com/NixOS/nixpkgs/pull/369788
+    fastfetch
     gitAndTools.gh
     google-cloud-sdk
     imagemagick
     kubectl
     kubernetes-helm
+    (llama-cpp.overrideAttrs {
+      version = "b4539";
+      src = pkgs.fetchFromGitHub {
+        owner = "ggerganov";
+        repo = "llama.cpp";
+        tag = "b4539";
+        hash = "sha256-zPWx8gdai8OfoBCr2X2oJYg45ipLselYZMrL+MbQ1AY=";
+        leaveDotGit = true;
+      };
+    })
     mosh
-    fastfetch
     pre-commit
     python311
     ssm-session-manager-plugin

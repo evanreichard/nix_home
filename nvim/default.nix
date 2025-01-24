@@ -120,6 +120,23 @@ in
         }
       )
 
+      # -------------------
+      # ---- LLAMA.VIM ----
+      # -------------------
+      (
+        pkgs.vimUtils.buildVimPlugin {
+          pname = "llama.vim";
+          version = "2025-01-23";
+          src = pkgs.fetchFromGitHub {
+            owner = "ggml-org";
+            repo = "llama.vim";
+            rev = "143fe910b8d47a054ed464c38d8b7c17d5354468";
+            sha256 = "sha256-PW0HKzhSxcZiWzpDOuy98rl/X0o2nE7tMjZjwwh0qLE=";
+          };
+          meta.homepage = "https://github.com/ggml-org/llama.vim/";
+        }
+      )
+
     ];
 
     extraPackages = with pkgs; [
