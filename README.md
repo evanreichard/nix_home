@@ -1,37 +1,43 @@
-# Nix Home Manager Configuration
+# Deploy NixOS
 
-## Upgrade
+## Copy Config
 
 ```bash
-# Update System Channels
-sudo nix-channel --add https://nixos.org/channels/nixpkgs-24.11-darwin nixpkgs
-sudo nix-channel --update
-
-# Update Home Manager
-nix-channel --add https://github.com/nix-community/home-manager/archive/release-24.11.tar.gz home-manager
-nix-channel --update
-
-# Build Home Manager
-home-manager switch
+scp -r * nixos@10.10.10.10:/tmp/
 ```
 
-## Clean Garbage
-
-NOTE: This will remove previous generations
+## Partition Drives
 
 ```bash
-sudo nix-collect-garbage --delete-old
-nix-collect-garbage --delete-old
+# WARNING: Be sure to check drive mappings
+sudo fdisk -l
+
+# Partition Disk
+sudo nix \
+    --experimental-features "nix-command flakes" \
+    run github:nix-community/disko -- \
+    --mode disko \
+    --flake /tmp#lin-va-llama1
 ```
 
-## OS Update
-
-`/etc/bashrc` may get overridden. To properly load Nix, prepend the following:
+## Install NixOS
 
 ```bash
-# Nix
-if [ -e '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh' ]; then
-  . '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh'
-fi
-# End Nix
+# Install
+sudo nixos-install --flake /tmp#lin-va-llama1
+
+# Reboot
+sudo reboot
+```
+
+## Copy Config to Host
+
+```bash
+scp -r * nixos@10.10.10.10:/etc/nixos
+```
+
+## Rebuild NixOS
+
+```bash
+sudo nixos-rebuild switch
 ```
