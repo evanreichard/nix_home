@@ -11,6 +11,9 @@ sudo nix-channel --update
 nix-channel --add https://github.com/nix-community/home-manager/archive/release-24.11.tar.gz home-manager
 nix-channel --update
 
+# Link Repo
+ln -s /Users/evanreichard/Development/git/personal/nix/home-manager ~/.config/home-manager
+
 # Build Home Manager
 home-manager switch
 ```
